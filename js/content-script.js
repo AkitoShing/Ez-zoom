@@ -30,7 +30,6 @@
         activationKey: "ctrlKey",
         holdToZoom: true,
         alwaysFollowCursor: true,
-        disableJavascript: false,
         strength: 0.5, // 0.5 maps to 0.2 via getStrength
         transition: 200,
     };
@@ -220,8 +219,6 @@
         async prepareZoom() {
             state.isPreparingZoom = true;
             isDoubleClick = false; // Reset flag when starting new zoom
-            if (storage.disableJavascript)
-                await control.toggleJavascript(false);
             fullscreenEl = (document.fullscreenElement || html);
             if (fullscreenEl != html)
                 await control.setFullscreenZoom();
@@ -354,8 +351,6 @@
                 await control.removeFullscreenZoom();
             else
                 await utils.sleep(storage.transition);
-            if (storage.disableJavascript)
-                await control.toggleJavascript(true);
             control.disableZoom();
             targetEl = html;
             state.isExitingZoom = false;
@@ -376,15 +371,6 @@
             inFullscreenZoom = false;
             await utils.switchToFullscreenEl(fullscreenEl);
             helpers.resetElementsStyle(fullscreenElAncestors);
-        },
-        toggleJavascript(enable) {
-            return new Promise((resolve) => {
-                const request = {
-                    message: "TOGGLE_JAVASCRIPT",
-                    details: { enable, primaryPattern: location.origin + "/*" },
-                };
-                chrome.runtime.sendMessage(request, resolve);
-            });
         },
     };
     

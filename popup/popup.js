@@ -6,13 +6,8 @@
         return;
     }
     
-    const titleEl = document.querySelector("#title");
     const strengthValueEl = document.querySelector("#strength-value");
     const transitionValueEl = document.querySelector("#transition-value");
-    
-    titleEl.onclick = () => {
-        chrome.tabs.create({ url: chrome.runtime.getURL("index.html") });
-    };
     
     for (const inputEl of document.querySelectorAll("input"))
         inputEl.addEventListener("input", inputChanged);
@@ -22,7 +17,6 @@
         activationKey: "ctrlKey",
         holdToZoom: true,
         alwaysFollowCursor: true,
-        disableJavascript: false,
         strength: 0.5, // 0.5 maps to 0.2 via getStrength
         transition: 200,
     };
@@ -77,27 +71,8 @@
             transitionValueEl.textContent = transition + "ms";
         }
         else {
-            if (key == "disableJavascript")
-                toggleJavascript(this);
-            else
-                chrome.storage.sync.set({ [key]: this.checked });
+            chrome.storage.sync.set({ [key]: this.checked });
         }
-    }
-    
-    function toggleJavascript(inputEl) {
-        const disableJavascript = inputEl.checked;
-        const permissions = ["contentSettings"];
-        chrome.permissions.contains({ permissions }, (contains) => {
-            if (contains)
-                chrome.storage.sync.set({ disableJavascript });
-            else
-                chrome.permissions.request({ permissions }, (granted) => {
-                    if (granted)
-                        chrome.storage.sync.set({ disableJavascript });
-                    else
-                        inputEl.checked = false;
-                });
-        });
     }
     
     /* Shared functions from content-script */
