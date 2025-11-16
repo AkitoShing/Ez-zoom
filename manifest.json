@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Ez zoom",
-  "version": "1.1.0",
-  "description": "Pinch-to-zoom convenience, now on your desktop. Hold Ctrl/Alt/Shift and spin the mouse wheel to zoom toward the cursor.",
+  "version": "0.0.1",
+  "description": "Smooth page zoom for desktop. Hold a modifier key and scroll to zoom in or out, just like pinch-to-zoom on mobile devices.",
   "permissions": [
     "storage",
     "tabs",
@@ -30,6 +30,12 @@
       "all_frames": true
     }
   ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Ez zoom"
