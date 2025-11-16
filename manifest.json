@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Ez zoom",
+  "version": "1.1.0",
+  "description": "Pinch-to-zoom convenience, now on your desktop. Hold Ctrl/Alt/Shift and spin the mouse wheel to zoom toward the cursor.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "optional_permissions": [
+    "contentSettings"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": [
+        "css/zoom.css"
+      ],
+      "js": [
+        "js/content-script.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Ez zoom"
+  }
+}
+

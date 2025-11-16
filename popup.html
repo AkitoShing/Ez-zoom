@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup/popup.css">
+    <title>Ez zoom</title>
+</head>
+<body>
+    <div id="popup">
+        <header>
+            <h1 id="title">Ez zoom</h1>
+            <p class="subtitle">Pinch-to-zoom for your desktop</p>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2 class="section-title">Activation Key</h2>
+                <div class="keyboard-layout">
+                    <div class="keyboard-row keyboard-row-top">
+                        <label class="key-option key-shift key-wide">
+                            <input type="radio" name="key" key="shiftKey">
+                            <span class="key-label">Shift</span>
+                        </label>
+                    </div>
+                    <div class="keyboard-row keyboard-row-bottom">
+                        <label class="key-option key-ctrl">
+                            <input type="radio" name="key" key="ctrlKey">
+                            <span class="key-label">Ctrl</span>
+                        </label>
+                        <div class="key-option key-windows key-disabled" title="Not available">
+                            <span class="key-label">⊞</span>
+                        </div>
+                        <label class="key-option key-alt">
+                            <input type="radio" name="key" key="altKey">
+                            <span class="key-label">Alt</span>
+                        </label>
+                    </div>
+                </div>
+                <p class="hint">Hold the selected key and scroll to zoom</p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Options</h2>
+                <div class="options-list">
+                    <label class="option-item">
+                        <div class="option-content">
+                            <span class="option-label">Hold to zoom</span>
+                            <span class="option-desc">Zoom resets when key is released</span>
+                        </div>
+                        <input type="checkbox" key="holdToZoom" class="toggle">
+                    </label>
+                    <label class="option-item">
+                        <div class="option-content">
+                            <span class="option-label">Follow cursor</span>
+                            <span class="option-desc">Viewport follows mouse movement</span>
+                        </div>
+                        <input type="checkbox" key="alwaysFollowCursor" class="toggle">
+                    </label>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Zoom Settings</h2>
+                
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label for="strength-slider" class="slider-label">Zoom Speed</label>
+                        <span class="slider-value" id="strength-value">0.20</span>
+                    </div>
+                    <input type="range" id="strength-slider" min="0" max="1" value="0.5" step="0.01" key="strength" class="slider">
+                    <p class="slider-hint">Step size: 0.05 to 0.5</p>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label for="transition-slider" class="slider-label">Animation Speed</label>
+                        <span class="slider-value" id="transition-value">200ms</span>
+                    </div>
+                    <input type="range" id="transition-slider" min="0" max="400" value="200" step="any" key="transition" class="slider">
+                    <p class="slider-hint">Duration: 0ms to 400ms</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="popup/popup.js"></script>
+</body>
+</html>
